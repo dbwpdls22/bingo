@@ -7,10 +7,12 @@
 
 int initiate_bingo()
 {
-	int i,j,k;
+	srand(time(NULL));
+	int s[N][N];
+	int i,j,k,temp;
 	int count=1;
-	int randx = rand() % N*N
-	int randy = rand() % N*N
+	int randx = rand() % N*N;
+	int randy = rand() % N*N;
 	
 	for (i=0;i<N;i++){
 		for(j=0;j<N;j++){
@@ -20,16 +22,29 @@ int initiate_bingo()
 	
 	for (k=0;k<N;k++){
 		for (i=0;i<N;i++){
-		    for(j=0;j<N;j++)
+		    for(j=0;j<N;j++){
+		    	temp = s[i][j];
+		    	s[i][j] = s[randx][randy];
+		    	s[randx][randy]=temp;
+			}
+		    
 	}
-	
-	return 0;
+	for (i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			printf("%2d",s[i][j]);
+		}
+		printf("\n");
+	}
+	return count;
 	
 };
 
 int main(int argc, char *argv[]) {
-	int n;
 	
-	n = initiate_bingo();
 	
+	int initiate_bingo();
+	
+	printf("%d",initiate_bingo);
+	
+	return 0;
 }
