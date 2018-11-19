@@ -82,24 +82,40 @@ printf("   <상대의 빙고판>\n");
 int get_number_byMe()
 {
 	int number;
-	printf("빙고 번호를 입력하시오: ");
-	scanf("%d",&number);
- } 
-int erase_bingo(int s1[N][N],int s2[N][N], int number){
-    int x,y; 
+	int x, retry;
 	
-	for (x=0;x<N;x++){
-		for(y=0;y<N;y++){
-			if(s1[x][y]==number){
-				s1[x][y]==0;
+	do{
+		retry=0;
+		printf("숫자를 선택하시오: ");
+		scanf("%d",&number);
+		if(number<1||number>N*N){	
+			retry=1; 
+		}
+	}
+    while(retry==1);
+	
+	printf("선택된 숫자: %d",number);
+ } 
+int erase_bingo(int s1[N][N],int s2[N][N],int number){ 
+
+    initiate_bingo1();
+    initiate_bingo2();
+    iget_number_byMer);
+	
+	for (i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if(s1[i][j]==number){
+				number=0;
 			}
 			   
 		}
 	}
-	for (x=0;x<N;x++){
-		for(y=0;y<N;y++){
-			if(s2[x][y]==number){
-				s2[x][y]==0;
+	for (i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if(s2[i][j]==number){
+				temp=s2[i][j];
+				s2[i][j]==-1;
+				temp;
 			}
 			   
 		}
@@ -121,9 +137,6 @@ int erase_bingo(int s1[N][N],int s2[N][N], int number){
 }
 	
 int main(void){
-	initiate_bingo1();
-	initiate_bingo2();
-	get_number_byMe();
-	erase_bingo(s1[N][N],s2[N][N],number);
+	erase_bingo(s1[N][N], s2[N][N], number);
 	return 0;
 }
