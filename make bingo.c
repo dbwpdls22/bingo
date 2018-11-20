@@ -27,8 +27,8 @@ void initiate_bingo(int *array){
 }
 void initialize(){
    srand((unsigned)time(NULL));
-   set_rand((int*)Mybingo);
-   set_rand((int*)Combingo);
+   initiate_bingo((int*)Mybingo);
+   initiate_bingo((int*)Combingo);
 }
 void print_bingo(int arr[N][N]){
 	int x,y;

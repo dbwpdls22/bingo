@@ -44,4 +44,15 @@ int get_number(int frm){
    return number;
 }
 
+void erase_bingo(int arr[5][5],int number){
+   int x,y;
+   
+   for(y=0;y<N;y++){
+      if(arr[y][x]==number){
+         arr[y][x]=0;
+      }
+      
+   }
+}
+
 
