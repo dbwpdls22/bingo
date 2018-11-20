@@ -8,10 +8,12 @@ int s1[N][N];
 int s2[N][N];
 int i,j,k,temp;
 int number;
+int *p;
 
 int initiate_bingo1()
 {
 	srand(time(NULL));
+	
 	int s1[N][N];
 	int i,j,k,temp;
 	int count=1;
@@ -67,11 +69,12 @@ int initiate_bingo2()
 		    s2[i][randy]=temp;
 		}
 		temp=s2[i][j];
-		    s2[i][j]=s2[randx][j];
-		    s2[randx][j]=temp;
+	    s2[i][j]=s2[randx][j];
+	    s2[randx][j]=temp;
 	}
 }
-    for (i=0;i<N;i++){
+    
+	for (i=0;i<N;i++){
 		for(j=0;j<N;j++){
 			printf(" %2d ", s2[i][j]);
 		}
@@ -96,26 +99,14 @@ int get_number_byMe()
 	
 	printf("선택된 숫자: %d",number);
  } 
-int erase_bingo(int s1[N][N],int s2[N][N],int number){ 
+int erase_bingo(){ 
 
-    initiate_bingo1();
-    initiate_bingo2();
-    iget_number_byMer);
+    get_number_byMe();
 	
 	for (i=0;i<N;i++){
 		for(j=0;j<N;j++){
-			if(s1[i][j]==number){
-				number=0;
-			}
-			   
-		}
-	}
-	for (i=0;i<N;i++){
-		for(j=0;j<N;j++){
-			if(s2[i][j]==number){
-				temp=s2[i][j];
-				s2[i][j]==-1;
-				temp;
+			if(s1[i][j]==*p){
+				s1[i][j]=-1;
 			}
 			   
 		}
@@ -127,16 +118,28 @@ int erase_bingo(int s1[N][N],int s2[N][N],int number){
 		printf("\n");
 	}
 	printf("   <나의 빙고판>\n");
-		for (i=0;i<N;i++){
+	
+	for (i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			if(s2[i][j]==*p){
+				s2[i][j]=-1;
+			}
+			   
+		}
+	}
+	for (i=0;i<N;i++){
 		for(j=0;j<N;j++){
 			printf(" %2d ", s2[i][j]);
 		}
 		printf("\n");
+	}
+	printf("   <상대방의 빙고판>\n");
 }
-    printf("   <상대의 빙고판>\n");
-}
-	
+
 int main(void){
-	erase_bingo(s1[N][N], s2[N][N], number);
+	initiate_bingo1();
+	initiate_bingo2();
+	erase_bingo();
+ 
 	return 0;
 }
