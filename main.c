@@ -1,26 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define SIZE 5
-#define SIZE2 25
+#define N 5
+#define M 25
 
 void initialize();
 void set_rand(int *array);
 void swap(int *x,int *y);
 
-void erase_bingo(int arr[5][5],int number);
-void print_bingo(int arr[5][5]);
+void erase_bingo(int arr[N][N],int number);
+void print_bingo(int arr[N][N]);
 void print_winner(int winner);
 
 int get_number(int from);
 
-int checked[25];
+int checked[M];
 int count=0;
 
-int check_bingo(int arr[5][5]);
+int check_bingo(int arr[N][N]);
 
-int ubingo[5][5];
-int cbingo[5][5];
+int ubingo[N][N];
+int cbingo[N][N];
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 void main(){
@@ -57,11 +57,11 @@ void initialize(){
 void set_rand(int *array){
 	int i;
 	
-	for(i=0;i<SIZE2;i++){
+	for(i=0;i<M;i++){
 		array[i]=i+1;
 	}
-	for(i=0;i<SIZE2;i++){
-		swap(&array[i],&array[rand()%25]);
+	for(i=0;i<M;i++){
+		swap(&array[i],&array[rand()%M]);
 	}
 }
 void swap(int*x,int*y){
@@ -70,23 +70,23 @@ void swap(int*x,int*y){
 	*x=*y;
 	*y=temp;
 }
-void erase_bingo(int arr[5][5],int number){
+void erase_bingo(int arr[N][N],int number){
 	int x,y;
 	
-	for(y=0;y<SIZE;y++){
-		if(arr[y][x]==number){
-			arr[y][x]=0;
+	for(y=0;y<N;y++){
+		if(arr[x][y]==number){
+			arr[x][y]=0;
 		}
 		
 	}
 }
-void print_bingo(int arr[5][5]){
+void print_bingo(int arr[N][N]){
 	int x,y;
 	
-	for (y=0;y<SIZE;y++){
-		for(x=0;x<SIZE;x++){
-			if (arr[y][x]!=-1){
-			printf("%7d",arr[y][x]);
+	for (y=0;y<N;y++){
+		for(x=0;x<N;x++){
+			if (arr[x][y]!=-1){
+			printf("%7d",arr[x][y]);
 	     	}
 	        else {
 			printf("XerrorX");
@@ -112,56 +112,62 @@ void print_winner(int winner){
 			break;
 	}
 }
-int get_number(int frm){
-	int number;
-	int x,retry;
+int get_number_byMe(int frm){
+	int number=0;
+	int i,j; 
+	int x,temp,alreadynumber;
 	
-	do{
-		retry=0;
-		if(frm==0){
-			printf(">>1~25사이의 숫자를 입력하세요.:");
-			scanf("%d",&number);
-			if(number<1||number>25){
-				retry=1;
-			} 
+	while(1){
+		printf("1~25 사이의 숫자를 입력하세요.:");
+		scanf("%d",&number); 
+		
+		if(number>25||number<1){
+			printf("숫자를 다시 선택하십시오:");
+			scanf("%d",&number); 
 		}
 		else{
-			number=rand()%25 +1;
-		}
-		if(retry==0){
-			for(x=0;x<count;x++){
-				if(checked[x]==number){
-					retry=1;
-					break;
+			for(i=0;i<N;i++){
+				for(j=0;j<N;j++){
+					if(ubingo[i][j]==number){
+						ubingo[i][j]=temp;
+						alreadynumber=1;
+					}
+				}
+			}
+			for(i=0;i<N;i++)
+			{
+				for(j=0;j<N;j++)
+				{
+					if(cbingo[i][j]==number){
+						cbingo[i][j]=temp;
+					
+					}
 				}
 			}
 		}
-	}while(retry=1);
-	
-	checked[count++]=number;
-	if(frm==0){
-		printf(">사용자가 '%d'를 선택했습니다.\n",number);
+		if(alreadynumber==1){
+       break;
 	}
+
 	else{
-		printf(">컴퓨터가 '%d'를 선택했습니다.\n",number);
+		printf("이미 입력한 숫자입니다. 다시 선택해주십시오:");
 	}
-	return number;
 }
-int check_bingo(int arr[5][5]){
+int check_bingo(int arr[N][N]){
 	int x,y,sum;
 	
-	for(y=0;y<SIZE;y++){
+	for(y=0;y<N;y++){
 		sum=0;
-		for(x=0;x<SIZE;x++){
+		for(x=0;x<N;x++){
 			sum+=arr[y][x];
 		}
 		if(sum==0){
 			return 1;
 		}
 	}
-	for(x=0;x<SIZE;x++){
+	for(x=0;x<N;x++){
 		sum=0;
-		for(y=0;y<SIZE;y++){
+		for(y=0;y<N;y++){
 			sum+=arr[y][x];
 		}
 		if(sum==0){
@@ -170,18 +176,18 @@ int check_bingo(int arr[5][5]){
 	}
 	sum=0;
 	
-	for(x=0;x<SIZE;x++){
+	for(x=0;x<N;x++){
 		sum+=arr[x][x];
 	}
 	if(sum==0){
 		return 1;
 	}
 	sum=0;
-	for(x=0;x<SIZE;x++){
-		sum+=arr[x][SIZE-x-1];
+	for(x=0;x<N;x++){
+		sum+=arr[x][N-x-1];
 	}
 	if(sum==0){
 		return 1;
 	}
-	return 0;
+	return arr[N];
 }
