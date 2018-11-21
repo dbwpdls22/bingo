@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define N 5
+#define N 4
 #define M 3
 
 int initiate_bingo(int s[N][N]) //빙고판 생성 
@@ -13,7 +13,7 @@ int initiate_bingo(int s[N][N]) //빙고판 생성
   	 
   	for (i=0;i<N;i++){ 
   		for(j=0;j<N;j++){ 
-  			s[i][j]=count++; //1부터 25까지 할당 
+  			s[i][j]=count++; //배열에 순서대로 1부터 25까지 할당 
   		} 
   	} 
   	 
@@ -28,7 +28,7 @@ int initiate_bingo(int s[N][N]) //빙고판 생성
   		    	
 				temp = s[i][j]; 
   		    	s[i][j] = s[randx][randy]; //배열을 랜덤으로 섞음 
-  		    	s[randx][randy]=temp; 
+  		    	s[randx][randy]=temp; //섞인 배열을 임시저장함 
   			}
 	  	}
     }
@@ -38,14 +38,17 @@ int initiate_bingo(int s[N][N]) //빙고판 생성
  {
  	int i, j;
  	
- 	for (i=0;i<N;i++){ 
-  		for(j=0;j<N;j++){ 
-  			printf("%2d ",s[i][j]); 
+ 	for (i=0;i<N;i++)
+	{ 
+  		for(j=0;j<N;j++)
+		{ 
+  			printf("%2d ",s[i][j]);//랜덤으로 섞인 배열 출력 
   		} 
   		printf("\n\n"); 
   	}  	
-  	printf("<나의 빙고판>\n");
  }
+ 
+
  
  
  

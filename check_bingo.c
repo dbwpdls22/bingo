@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define N 5
+#define N 4
 #define M 3
 
 int count_bingo(int s4[N][N])//빙고를 세는 함수 
@@ -24,7 +24,7 @@ int count_bingo(int s4[N][N])//빙고를 세는 함수
 		}
 		if(bingo==-N)//세로로 한 줄이 모두 -1일때 
 		{
-			x++; //x=x+1 
+			x=x+1;  
 		}
 	}
 	for(i=0;i<N;i++)//가로 빙고 
@@ -34,9 +34,9 @@ int count_bingo(int s4[N][N])//빙고를 세는 함수
 		{
 			bingo+=s4[i][j];
 		}
-		if(sum==-N)//가로로 한 줄이 모두 -1일때 
+		if(bingo==-N)//가로로 한 줄이 모두 -1일때 
 		{
-			y++;
+			y=y+1;
 		}
 	}
 	
@@ -48,26 +48,41 @@ int count_bingo(int s4[N][N])//빙고를 세는 함수
 	}
 	if(bingo==-N)//대각선  줄이 모두 -1일때 
 	{
-		yx++;
+		yx=yx+1;
 	}
 	bingo=0;//bingo 초기화 
 	for(i=0;i<N;i++)//y=x 빙고
 	{
-		bingo=s4[i][N-i-1];
+		bingo+=s4[i][N-i-1];
 	}
 	if(bingo==-N)//대각선  줄이 모두 -1일때 
 	{
-		xy++;
+		xy=xy+1;
 	}
 		
 	sum=x+y+xy+yx;//빙고 줄의 갯수 
 	
 	return sum; 
+	
 }
 
-int check_bingo(int s[N][N],int sum)//빙고 수를 보여주는 함수 
+int check_bingo_my(int s[N][N],int sum)//나의 빙고 수를 보여주는 함수 
 {
 	printf("\n");
-	printf("빙고:%d줄\n\n", sum); 
+	printf("----<나의 빙고:%d줄>----\n\n", sum); 
+	
+	if(sum<M)
+	{
+		return s[N][N];
+	}
+	if(sum>=M)
+	{
+		return sum;
+	} 
 }
-
+int check_bingo_com(int s[N][N],int sum)//컴퓨터의 빙고 수를 보여주는 함수 
+{
+	printf("\n");
+	printf("----<컴퓨터의 빙고:%d줄>----\n\n", sum); 
+	
+}

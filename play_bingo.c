@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define N 5
+#define N 4
 #define M 3
 #include "initiate_bingo.h"
 #include "check_bingo.h"
@@ -30,9 +30,9 @@ int get_number_byMe(int s3[N][N])   //숫자를 입력받는 함수
 	            {
 		            for(j=0;j<N;j++)
 			    	{
-			            if(s3[i][j]==number)
+			            if(s3[i][j]==number)//number와 같은 배열일시 
 					        {
-     			                return number;
+     			                return number;//number로 반환 
      			            }
      			    }
      		    }
@@ -77,7 +77,7 @@ int get_number_byCom(int s5[N][N])//컴퓨터에 의해 숫자를 입력받는 함수
 				{
 			        if(s5[i][j]==number)//전에 입력되지 않은 숫자
 					{
-     			        return number; 
+     			        return number;//number로 반환 
      			    }
      			}
      		}

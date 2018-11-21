@@ -1,5 +1,5 @@
 
-#define N 5
+#define N 4
 
 int myS[N][N];
 int comS[N][N]; 
