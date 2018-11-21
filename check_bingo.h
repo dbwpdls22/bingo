@@ -1,5 +1,6 @@
 #define N 5
-#define M 25
+#define M 3
 
 
-int check_bingo(int s4[N][N]);
+int count_bingo(int s4[N][N]);
+int check_bingo(int s[N][N],int sum);
