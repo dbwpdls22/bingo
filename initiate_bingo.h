@@ -16,7 +16,7 @@ void swap(int*x,int*y){
 void set_rand(int *array){
 	int i,j,k;
 	
-	for(i=0;i<M;i++){
+	for(i=0;i<N;i++){
 		array[i]=i+1;
 	}
 	for(i=0;i<M;i++){
@@ -34,14 +34,10 @@ void print_bingo(int arr[N][N]){
 	
 	for (y=0;y<N;y++){
 		for(x=0;x<N;x++){
-			if (arr[x][y]!=-1){
 			printf("%7d",arr[x][y]);
 	     	}
-	        else {
-			printf("XerrorX");
-		    }
 		}
 		printf("\n\n");
 	}
 	
-}
+

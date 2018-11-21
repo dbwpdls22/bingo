@@ -12,7 +12,7 @@ void erase_bingo(int arr[N][N],int number){
 	
 	for(y=0;y<N;y++){
 		if(arr[x][y]==number){
-			arr[x][y]=0;
+			arr[x][y]=-1;
 		}
 		
 	}
@@ -24,6 +24,8 @@ int get_number_byMe(int frm){
 	int i,j; 
 	int x,temp,alreadynumber;
 	
+	
+
 	while(1){
 		printf("1~25 사이의 숫자를 입력하세요.:");
 		scanf("%d",&number); 
@@ -32,12 +34,12 @@ int get_number_byMe(int frm){
 			printf("숫자를 다시 선택하십시오:");
 			scanf("%d",&number); 
 		}
-		else{
+		 if(number<26&&number>0){
 			for(i=0;i<N;i++){
 				for(j=0;j<N;j++){
 					if(ubingo[i][j]==number){
 						ubingo[i][j]=temp;
-						alreadynumber=1;
+						temp=-1;
 					}
 				}
 			}
@@ -47,16 +49,14 @@ int get_number_byMe(int frm){
 				{
 					if(cbingo[i][j]==number){
 						cbingo[i][j]=temp;
+						temp=-1;
 					
 					}
 				}
 			}
 		}
-		if(alreadynumber==1){
-       break;
-	}
 
-	else{
+	else{	
 		printf("이미 입력한 숫자입니다. 다시 선택해주십시오:");
 	}
 }
