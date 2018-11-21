@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o
-LINKOBJ  = main.o
+OBJ      = main.o play_bingo.o initiate_bingo.o check_bingo.o result_bingo.o
+LINKOBJ  = main.o play_bingo.o initiate_bingo.o check_bingo.o result_bingo.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -26,3 +26,15 @@ $(BIN): $(OBJ)
 
 main.o: main.c
 	$(CC) -c main.c -o main.o $(CFLAGS)
+
+play_bingo.o: play_bingo.c
+	$(CC) -c play_bingo.c -o play_bingo.o $(CFLAGS)
+
+initiate_bingo.o: initiate_bingo.c
+	$(CC) -c initiate_bingo.c -o initiate_bingo.o $(CFLAGS)
+
+check_bingo.o: check_bingo.c
+	$(CC) -c check_bingo.c -o check_bingo.o $(CFLAGS)
+
+result_bingo.o: result_bingo.c
+	$(CC) -c result_bingo.c -o result_bingo.o $(CFLAGS)
